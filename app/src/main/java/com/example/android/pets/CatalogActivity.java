@@ -35,7 +35,9 @@ import com.example.android.pets.data.PetDbHelper;
  */
 public class CatalogActivity extends AppCompatActivity {
 
-    /** Database helper that will provide us access to the database */
+    /**
+     * Database helper that will provide us access to the database
+     */
     private PetDbHelper mDbHelper;
 
     @Override
@@ -79,7 +81,7 @@ public class CatalogActivity extends AppCompatActivity {
                 PetEntry.COLUMN_PET_NAME,
                 PetEntry.COLUMN_PET_BREED,
                 PetEntry.COLUMN_PET_GENDER,
-                PetEntry.COLUMN_PET_WEIGHT };
+                PetEntry.COLUMN_PET_WEIGHT};
 
         // Perform a query on the pets table
         Cursor cursor = db.query(
@@ -163,6 +165,19 @@ public class CatalogActivity extends AppCompatActivity {
         long newRowId = db.insert(PetEntry.TABLE_NAME, null, values);
     }
 
+
+    /**
+     * Remove all users and groups from database.
+     */
+    public void removeAll() {
+        // db.delete(String tableName, String whereClause, String[] whereArgs);
+        // If whereClause is null, it will delete all rows.
+        SQLiteDatabase db = mDbHelper.getWritableDatabase(); // helper is object extends SQLiteOpenHelper
+        db.delete(PetEntry.TABLE_NAME, null, null);
+        db.close();
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu options from the res/menu/menu_catalog.xml file.
@@ -182,7 +197,9 @@ public class CatalogActivity extends AppCompatActivity {
                 return true;
             // Respond to a click on the "Delete all entries" menu option
             case R.id.action_delete_all_entries:
-                // Do nothing for now
+                // Remove all data in the table "pets"
+                removeAll();
+                displayDatabaseInfo();
                 return true;
         }
         return super.onOptionsItemSelected(item);
