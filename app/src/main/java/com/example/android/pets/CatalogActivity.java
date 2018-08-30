@@ -192,7 +192,6 @@ public class CatalogActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to a click on the "Insert dummy data" menu option
             case R.id.action_insert_dummy_data:
-                jj
                 insertPet();
                 displayDatabaseInfo();
                 return true;
