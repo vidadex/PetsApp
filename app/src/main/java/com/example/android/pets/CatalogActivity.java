@@ -191,7 +191,7 @@ public class CatalogActivity extends AppCompatActivity {
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             // Respond to a click on the "Insert dummy data" menu option
-            case R.id.action_insert_dummy_data:
+            case R.id.action_insert_dummy_data: jk
                 insertPet();
                 displayDatabaseInfo();
                 return true;
